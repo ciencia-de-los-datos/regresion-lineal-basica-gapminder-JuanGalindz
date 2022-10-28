@@ -1,9 +1,7 @@
 """
 Regresión Lineal Univariada
 -----------------------------------------------------------------------------------------
-
 En este laboratio se construirá un modelo de regresión lineal univariado.
-
 """
 import numpy as np
 import pandas as pd
@@ -28,10 +26,10 @@ def pregunta_01():
     print(X.shape)
 
     # Transforme `y` a un array de numpy usando reshape
-    y_reshaped = y.values.reshape(-1,1)
+    y_reshaped = y.values.reshape(-1, 1)
 
     # Trasforme `X` a un array de numpy usando reshape
-    X_reshaped = X.values.reshape(-1,1)
+    X_reshaped = X.values.reshape(-1, 1)
 
     # Imprima las nuevas dimensiones de `y`
     print(y_reshaped.shape)
@@ -117,20 +115,20 @@ def pregunta_04():
     from sklearn.metrics import mean_squared_error
 
     # Lea el archivo `gm_2008_region.csv` y asignelo al DataFrame `df`
-    df = pd.read_csv(gm_2008_region.csv)
+    df = pd.read_csv("gm_2008_region.csv")
 
     # Asigne a la variable los valores de la columna `fertility`
-    X_fertility = df["fertility"]
+    X_fertility = df["fertility"].values.reshape(-1,1)
 
     # Asigne a la variable los valores de la columna `life`
-    y_life = df["life"]
+    y_life = df["life"].values.reshape(-1,1)
 
     # Divida los datos de entrenamiento y prueba. La semilla del generador de números
     # aleatorios es 53. El tamaño de la muestra de entrenamiento es del 80%
     (X_train, X_test, y_train, y_test,) = train_test_split(
         X_fertility, 
         y_life,
-        test_size=0.8,
+        test_size=0.2,
         random_state=53,
     )
 
@@ -147,4 +145,3 @@ def pregunta_04():
     print("R^2: {:6.4f}".format(linearRegression.score(X_test, y_test)))
     rmse = np.sqrt(mean_squared_error(y_test, y_pred))
     print("Root Mean Squared Error: {:6.4f}".format(rmse))
- 
